@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements, PaymentElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import { FiLock } from 'react-icons/fi';
-import { confirmOrderPayment } from '../api/orders';
+import { confirmOrderPayment } from '../../api/orders';
 import { formatLKR, getErrorMessage } from '../../utils/formatters';
 
 // loadStripe must run once per key, not on every render
