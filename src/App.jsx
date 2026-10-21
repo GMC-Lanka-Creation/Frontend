@@ -16,15 +16,15 @@ import OrdersPage from './pages/OrdersPage';
 import OrderDetailPage from './pages/OrderDetailPage';
 import AppointmentPage from './pages/AppointmentPage';
 import ProfilePage from './pages/ProfilePage';
-import AdminLayout from './pages/admin/AdminLayout';
-import AdminDashboard from './pages/admin/AdminDashboard';
-import AdminProducts from './pages/admin/AdminProducts';
-import AdminOrders from './pages/admin/AdminOrders';
-import AdminUsers from './pages/admin/AdminUsers';
-import AdminAppointments from './pages/admin/AdminAppointments';
-import AdminFeedback from './pages/admin/AdminFeedback';
-import AdminMaintenance from './pages/admin/AdminMaintenance';
-import TechnicianTasks from './pages/technician/TechnicianTasks';
+// import AdminLayout from './pages/admin/AdminLayout';
+// import AdminDashboard from './pages/admin/AdminDashboard';
+// import AdminProducts from './pages/admin/AdminProducts';
+// import AdminOrders from './pages/admin/AdminOrders';
+// import AdminUsers from './pages/admin/AdminUsers';
+// import AdminAppointments from './pages/admin/AdminAppointments';
+// import AdminFeedback from './pages/admin/AdminFeedback';
+// import AdminMaintenance from './pages/admin/AdminMaintenance';
+// import TechnicianTasks from './pages/technician/TechnicianTasks';
 
 // Where each role lands after login (and when opening a page meant for another role)
 export function homeFor(role) {
@@ -109,7 +109,7 @@ function AppRoutes() {
         <Route path="/appointments" element={<ProtectedRoute onLoginRequired={requireLogin} allowedRoles={['CUSTOMER']}><AppointmentPage /></ProtectedRoute>} />
         <Route path="/profile" element={<ProtectedRoute onLoginRequired={requireLogin}><ProfilePage /></ProtectedRoute>} />
 
-        {/* Admin routes */}
+        {/* Admin routes
         <Route path="/admin" element={<ProtectedRoute onLoginRequired={requireLogin} allowedRoles={['ADMIN']}><AdminLayout /></ProtectedRoute>}>
           <Route index element={<AdminDashboard />} />
           <Route path="products" element={<AdminProducts />} />
@@ -121,7 +121,7 @@ function AppRoutes() {
         </Route>
 
         {/* Technician routes */}
-        <Route path="/technician/tasks" element={<ProtectedRoute onLoginRequired={requireLogin} allowedRoles={['TECHNICIAN']}><TechnicianTasks /></ProtectedRoute>} />
+        {/* <Route path="/technician/tasks" element={<ProtectedRoute onLoginRequired={requireLogin} allowedRoles={['TECHNICIAN']}><TechnicianTasks /></ProtectedRoute>} /> */} */}
 
         {/* Fallback */}
         <Route path="*" element={<Navigate to="/" replace />} />
