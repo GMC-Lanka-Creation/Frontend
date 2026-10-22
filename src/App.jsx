@@ -121,7 +121,7 @@ function AppRoutes() {
         </Route>
 
         {/* Technician routes */}
-        <Route path="/technician/tasks" element={<ProtectedRoute onLoginRequired={requireLogin} allowedRoles={['TECHNICIAN']}><TechnicianTasks /></ProtectedRoute>} />
+        <Route path="/technician/tasks" element={<ProtectedRoute onLoginRequired={requireLogin} allowedRoles={['TECHNICIAN']}><TechnicianTasks /></ProtectedRoute>} /> 
 
         {/* Fallback */}
         <Route path="*" element={<Navigate to="/" replace />} />
