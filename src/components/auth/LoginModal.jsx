@@ -12,7 +12,9 @@ export default function LoginModal({ onClose, onLoggedIn, onSwitchToRegister, on
   const [error, setError] = useState('');
 
   useEffect(() => {
-    const onKey = (e) => { if (e.key === 'Escape') onClose(); };
+    const onKey = (e) => {
+      if (e.key === 'Escape') onClose();
+    };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, [onClose]);
@@ -25,7 +27,8 @@ export default function LoginModal({ onClose, onLoggedIn, onSwitchToRegister, on
       const { data } = await apiLogin(form);
       login(data);
       toast.success(`Welcome back, ${data.name}!`);
-      if (onLoggedIn) onLoggedIn(data); else onClose();
+      if (onLoggedIn) onLoggedIn(data);
+      else onClose();
     } catch (err) {
       if (err.code === 'ERR_NETWORK' || err.message?.includes('Network')) {
         setError('We can\u2019t reach GMC Lanka right now. Please check your connection and try again.');
@@ -43,9 +46,13 @@ export default function LoginModal({ onClose, onLoggedIn, onSwitchToRegister, on
     <div
       onClick={(e) => e.target === e.currentTarget && onClose()}
       style={{
-        position: 'fixed', inset: 0, zIndex: 1000,
-        background: 'linear-gradient(135deg, #dde8f2 0%, #c8daea 50%, #d4e4f0 100%)',
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        position: 'fixed',
+        inset: 0,
+        zIndex: 1000,
+        background: 'linear-gradient(135deg, #f3e6d3 0%, #e6cfae 50%, #efdcc2 100%)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
         padding: '1rem',
       }}
     >
@@ -57,45 +64,64 @@ export default function LoginModal({ onClose, onLoggedIn, onSwitchToRegister, on
           { w: 150, h: 150, top: '30%', left: '10%', opacity: 0.1 },
           { w: 100, h: 100, bottom: '20%', right: '12%', opacity: 0.1 },
         ].map((c, i) => (
-          <div key={i} style={{
-            position: 'absolute',
-            width: c.w, height: c.h,
-            borderRadius: '50%',
-            background: 'rgba(14, 116, 144, 0.25)',
-            top: c.top, bottom: c.bottom, left: c.left, right: c.right,
-            opacity: c.opacity,
-          }} />
+          <div
+            key={i}
+            style={{
+              position: 'absolute',
+              width: c.w,
+              height: c.h,
+              borderRadius: '50%',
+              background: 'rgba(92, 58, 32, 0.28)',
+              top: c.top,
+              bottom: c.bottom,
+              left: c.left,
+              right: c.right,
+              opacity: c.opacity,
+            }}
+          />
         ))}
       </div>
 
       {/* Card */}
-      <div style={{
-        background: '#fff',
-        borderRadius: 20,
-        padding: '2.75rem 2.5rem 2.25rem',
-        width: '100%', maxWidth: 420,
-        boxShadow: '0 8px 40px rgba(0,0,0,0.08)',
-        position: 'relative',
-      }}>
+      <div
+        style={{
+          background: '#fff',
+          borderRadius: 20,
+          padding: '2.75rem 2.5rem 2.25rem',
+          width: '100%',
+          maxWidth: 420,
+          boxShadow: '0 8px 40px rgba(46, 26, 14, 0.12)',
+          position: 'relative',
+        }}
+      >
         {/* Heading */}
-        <h2 style={{
-          fontSize: '2rem', fontWeight: 800,
-          color: '#0f3460', marginBottom: '0.4rem',
-          lineHeight: 1.2,
-        }}>
+        <h2
+          style={{
+            fontSize: '2rem',
+            fontWeight: 800,
+            color: 'var(--brand)',
+            marginBottom: '0.4rem',
+            lineHeight: 1.2,
+          }}
+        >
           Welcome back
         </h2>
-        <p style={{ color: '#8a9ab0', fontSize: '0.9rem', marginBottom: '2rem' }}>
+        <p style={{ color: '#8a6f55', fontSize: '0.9rem', marginBottom: '2rem' }}>
           Enter your credentials to access your account.
         </p>
 
         {error && (
-          <div style={{
-            background: '#fef2f2', border: '1px solid #fecaca',
-            color: '#b91c1c', borderRadius: 8,
-            padding: '0.65rem 0.875rem', fontSize: '0.85rem',
-            marginBottom: '1.25rem',
-          }}>
+          <div
+            style={{
+              background: '#fef2f2',
+              border: '1px solid #fecaca',
+              color: '#b91c1c',
+              borderRadius: 8,
+              padding: '0.65rem 0.875rem',
+              fontSize: '0.85rem',
+              marginBottom: '1.25rem',
+            }}
+          >
             {error}
           </div>
         )}
@@ -103,7 +129,9 @@ export default function LoginModal({ onClose, onLoggedIn, onSwitchToRegister, on
         <form onSubmit={handleSubmit}>
           {/* Email */}
           <div style={{ marginBottom: '1.1rem' }}>
-            <label htmlFor="login-email" style={labelStyle}>EMAIL</label>
+            <label htmlFor="login-email" style={labelStyle}>
+              EMAIL
+            </label>
             <input
               id="login-email"
               autoComplete="email"
@@ -119,7 +147,9 @@ export default function LoginModal({ onClose, onLoggedIn, onSwitchToRegister, on
 
           {/* Password */}
           <div style={{ marginBottom: '0.6rem' }}>
-            <label htmlFor="login-password" style={labelStyle}>PASSWORD</label>
+            <label htmlFor="login-password" style={labelStyle}>
+              PASSWORD
+            </label>
             <input
               id="login-password"
               autoComplete="current-password"
@@ -138,10 +168,14 @@ export default function LoginModal({ onClose, onLoggedIn, onSwitchToRegister, on
               type="button"
               onClick={onForgotPassword}
               style={{
-                background: 'none', border: 'none',
-                color: '#0e7490', fontSize: '0.75rem',
-                fontWeight: 700, letterSpacing: '0.06em',
-                cursor: 'pointer', padding: 0,
+                background: 'none',
+                border: 'none',
+                color: 'var(--wood-600)',
+                fontSize: '0.75rem',
+                fontWeight: 700,
+                letterSpacing: '0.06em',
+                cursor: 'pointer',
+                padding: 0,
               }}
             >
               FORGOT PASSWORD
@@ -154,38 +188,48 @@ export default function LoginModal({ onClose, onLoggedIn, onSwitchToRegister, on
             disabled={loading}
             style={{
               width: '100%',
-              background: loading ? '#2d6a8a' : '#0f3460',
+              background: loading ? 'var(--brand-hover)' : 'var(--brand)',
               color: '#fff',
               border: 'none',
               borderRadius: 50,
               padding: '0.9rem 1.5rem',
-              fontSize: '1rem', fontWeight: 600,
+              fontSize: '1rem',
+              fontWeight: 600,
               cursor: loading ? 'not-allowed' : 'pointer',
-              display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: 8,
               transition: 'background 0.2s',
             }}
           >
-            {loading ? 'Signing in...' : <><span>Login</span><FiArrowRight size={18} /></>}
+            {loading ? (
+              'Signing in...'
+            ) : (
+              <>
+                <span>Login</span>
+                <FiArrowRight size={18} />
+              </>
+            )}
           </button>
         </form>
 
         {/* Divider */}
-        <div style={{ height: 1, background: '#f0f2f5', margin: '1.75rem 0 1.25rem' }} />
+        <div style={{ height: 1, background: '#efe5d8', margin: '1.75rem 0 1.25rem' }} />
 
         {/* Sign Up section */}
         <div style={{ textAlign: 'center' }}>
-          <p style={{ color: '#8a9ab0', fontSize: '0.88rem', marginBottom: '0.85rem' }}>
-            New to &nbsp;GMC LANKA?
-          </p>
+          <p style={{ color: '#8a6f55', fontSize: '0.88rem', marginBottom: '0.85rem' }}>New to &nbsp;GMC LANKA?</p>
           <button
             onClick={onSwitchToRegister}
             style={{
               background: '#fff',
-              border: '1.5px solid #0e7490',
-              color: '#0e7490',
+              border: '1.5px solid var(--wood-600)',
+              color: 'var(--wood-600)',
               borderRadius: 50,
               padding: '0.5rem 2rem',
-              fontSize: '0.9rem', fontWeight: 600,
+              fontSize: '0.9rem',
+              fontWeight: 600,
               cursor: 'pointer',
               transition: 'background 0.15s',
             }}
@@ -200,16 +244,21 @@ export default function LoginModal({ onClose, onLoggedIn, onSwitchToRegister, on
 
 const labelStyle = {
   display: 'block',
-  fontSize: '0.7rem', fontWeight: 700,
-  color: '#9ca3af', letterSpacing: '0.08em',
+  fontSize: '0.7rem',
+  fontWeight: 700,
+  color: '#8a6f55',
+  letterSpacing: '0.08em',
   marginBottom: 6,
 };
 
 const inputStyle = {
-  width: '100%', boxSizing: 'border-box',
-  background: '#f0f4f8',
-  border: 'none', outline: 'none',
+  width: '100%',
+  boxSizing: 'border-box',
+  background: '#f6efe6',
+  border: 'none',
+  outline: 'none',
   borderRadius: 10,
   padding: '0.85rem 1.1rem',
-  fontSize: '0.95rem', color: '#1a2a3a',
+  fontSize: '0.95rem',
+  color: '#2e1a0e',
 };
