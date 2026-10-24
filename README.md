@@ -94,8 +94,8 @@ which runs:
 | Deploy – Staging    | Merge to `develop`                           |
 | Deploy – Production | Merge to `main`, after manual approval       |
 
-Deploys build a Docker image, push it to `ghcr.io/gmc-lanka/frontend`, and call the hosting
-provider's deploy hook. A production deploy also creates the `vX.Y.Z` release tag from the version in
+Deploys build a Docker image, push it to `ghcr.io/gmc-lanka/frontend` and restart the
+container on the EC2 server over SSH (see infra's README, _Production on EC2_). A production deploy also creates the `vX.Y.Z` release tag from the version in
 `package.json`.
 
 ## Branching and commits
