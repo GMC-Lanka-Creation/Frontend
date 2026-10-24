@@ -1,13 +1,13 @@
 # GMC Lanka – Frontend
 
-[![CI/CD Pipeline](https://github.com/test-gmc-lanka/frontend/actions/workflows/ci.yml/badge.svg?branch=develop)](https://github.com/test-gmc-lanka/frontend/actions/workflows/ci.yml)
-[![codecov](https://codecov.io/gh/test-gmc-lanka/frontend/branch/develop/graph/badge.svg)](https://codecov.io/gh/test-gmc-lanka/frontend)
+[![CI/CD Pipeline](https://github.com/gmc-lanka/frontend/actions/workflows/ci.yml/badge.svg?branch=develop)](https://github.com/gmc-lanka/frontend/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/gmc-lanka/frontend/branch/develop/graph/badge.svg)](https://codecov.io/gh/gmc-lanka/frontend)
 
 Web client for the GMC Lanka system: product catalogue, cart and Stripe checkout, appointments,
-and the admin and technician dashboards. Part of the [test-gmc-lanka](https://github.com/test-gmc-lanka)
-project; the API lives in the [backend](https://github.com/test-gmc-lanka/backend) repository, the
-integration tests in [tests](https://github.com/test-gmc-lanka/tests) and the Dockerfile and CI/CD
-pipeline in [infra](https://github.com/test-gmc-lanka/infra).
+and the admin and technician dashboards. Part of the [gmc-lanka](https://github.com/gmc-lanka)
+project; the API lives in the [backend](https://github.com/gmc-lanka/backend) repository, the
+integration tests in [tests](https://github.com/gmc-lanka/tests) and the Dockerfile and CI/CD
+pipeline in [infra](https://github.com/gmc-lanka/infra).
 
 **Staging:** _add the staging URL here once deployed_
 
@@ -19,7 +19,7 @@ React 18 · React Router 6 · Vite 8 · Axios · Stripe Elements · Vitest + Tes
 
 - Node.js 22.12 or later (`.nvmrc` pins 22) and npm 10
 - The backend running on `http://localhost:8080` for local development
-- Docker (only to build or run the production image; see [infra](https://github.com/test-gmc-lanka/infra))
+- Docker (only to build or run the production image; see [infra](https://github.com/gmc-lanka/infra))
 
 No environment variables are needed for local development. See [.env.example](.env.example) for
 the variables the Docker image reads.
@@ -27,7 +27,7 @@ the variables the Docker image reads.
 ## Getting started
 
 ```bash
-git clone https://github.com/test-gmc-lanka/frontend.git
+git clone https://github.com/gmc-lanka/frontend.git
 cd frontend
 git checkout develop
 npm ci
@@ -36,7 +36,7 @@ npm run dev
 
 Open http://localhost:5173. Requests to `/api` and `/uploads` are proxied to the backend on port 8080.
 
-To run the integration tests, clone [tests](https://github.com/test-gmc-lanka/tests) next to this
+To run the integration tests, clone [tests](https://github.com/gmc-lanka/tests) next to this
 repository (`<workspace>/frontend` and `<workspace>/tests`).
 
 ## Scripts
@@ -56,7 +56,7 @@ repository (`<workspace>/frontend` and `<workspace>/tests`).
 
 ## Running with Docker
 
-The Dockerfile and nginx config are in the [infra](https://github.com/test-gmc-lanka/infra) repository.
+The Dockerfile and nginx config are in the [infra](https://github.com/gmc-lanka/infra) repository.
 With `infra` cloned next to this repository:
 
 ```bash
@@ -71,7 +71,7 @@ To run the whole stack (MySQL, backend, frontend), use `docker compose up --buil
 
 - Unit tests sit next to the code they test (`*.test.js`, `*.test.jsx`) and follow Arrange-Act-Assert
   with "should … given …" names.
-- Integration tests (`*.int.test.js`) live in the [tests](https://github.com/test-gmc-lanka/tests)
+- Integration tests (`*.int.test.js`) live in the [tests](https://github.com/gmc-lanka/tests)
   repository under `frontend/`. They exercise the real Axios client and its token-refresh interceptors
   against a scripted backend. `vite.config.js` picks them up from `../tests/frontend` (or
   `INTEGRATION_TESTS_DIR`), and they import app code through the alias `@frontend` → `src`.
@@ -81,7 +81,7 @@ To run the whole stack (MySQL, backend, frontend), use `docker compose up --buil
 ## CI/CD
 
 [.github/workflows/ci.yml](.github/workflows/ci.yml) sets the triggers and calls the pipeline defined in
-[infra/.github/workflows/frontend-ci.yml](https://github.com/test-gmc-lanka/infra/blob/main/.github/workflows/frontend-ci.yml),
+[infra/.github/workflows/frontend-ci.yml](https://github.com/gmc-lanka/infra/blob/main/.github/workflows/frontend-ci.yml),
 which runs:
 
 | Stage               | Trigger                                      |
@@ -94,7 +94,7 @@ which runs:
 | Deploy – Staging    | Merge to `develop`                           |
 | Deploy – Production | Merge to `main`, after manual approval       |
 
-Deploys build a Docker image, push it to `ghcr.io/test-gmc-lanka/frontend`, and call the hosting
+Deploys build a Docker image, push it to `ghcr.io/gmc-lanka/frontend`, and call the hosting
 provider's deploy hook. A production deploy also creates the `vX.Y.Z` release tag from the version in
 `package.json`.
 
